@@ -35,7 +35,7 @@ const AddEdit = () => {
                 setEmail(response.data[0].email);
                 setContact(response.data[0].contact);
             }
-    }
+    };
 
     const addUser = async (data)=>{
         // console.log('addContact ',data);
