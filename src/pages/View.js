@@ -1,4 +1,7 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react';
+import {useParams, Link} from 'react-router-dom';
+import axios from 'axios';
+import './View.css';
 
 const View = () => {
     return (
