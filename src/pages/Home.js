@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom';
 import './Home.css';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Home = () => {
     const [data, setData] = useState([]);
@@ -17,6 +18,17 @@ const Home = () => {
             setData(response.data);
         }
     };
+
+    const onDeleteUser = async (id)=>{
+        console.log(id);
+        if (window.confirm(`sure to delete ${id} ?`)) {
+            const response = await axios.delete(`http://localhost:3001/user/${id}`);
+            if (response.status === 200) {
+                toast.success(response.data);
+                getUsers();
+            }
+        }
+    }
 
     console.log('data: ',data);
     
@@ -44,9 +56,9 @@ const Home = () => {
                                     <Link to={`/update/${item.id}`}>
                                         <button className="btn btn-edit">Edit</button>
                                     </Link>
-                                    <Link to={`/update/${item.id}`}>
-                                        <button className="btn btn-delete">Delete</button>
-                                    </Link>
+                                    {/* <Link to={`/update/${item.id}`}> */}
+                                        <button className="btn btn-delete" onClick={()=>onDeleteUser(item.id)}>Delete</button>
+                                    {/* </Link> */}
                                     <Link to={`/view/${item.id}`}>
                                         <button className="btn btn-view">View</button>
                                     </Link>

@@ -11,9 +11,9 @@ import Header from './components/Header';
 function App() {
   return (
     <BrowserRouter>
+    <ToastContainer position="top-center"/>
       <div className="App">
         <Header/>
-        <ToastContainer/>
         <Routes>
           <Route exact path='/' element={<Home/>} />
           <Route exact path='/add' element={<AddEdit/>} />
@@ -21,6 +21,7 @@ function App() {
           <Route exact path='/view/:id' element={<View/>} />
           <Route exact path='/about' element={<About/>} />
         </Routes>
+        
       </div>
     </BrowserRouter>
   );

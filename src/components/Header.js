@@ -6,7 +6,7 @@ const Header = () => {
     const [activeTab, setActiveTab] = useState("Home");
     const location = useLocation();
     useEffect(()=>{
-        const setTab = ()=>{
+        // const setTab = ()=>{
             if (location.pathname === "/") {
                 setActiveTab("Home");
                 console.log('sets to Home')
@@ -17,10 +17,10 @@ const Header = () => {
                 setActiveTab("About");
                 console.log('sets to About')
             }
-        }
-        setTab();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        // }
+        // setTab();
+
+    }, [location]);
     
     return (
         <div className="header">
