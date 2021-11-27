@@ -73,8 +73,8 @@ const AddEdit = () => {
                 updateUser(data, id);
             }
             
-            history("/");
-            // setTimeout(()=>history("/"), 500);
+            // history("/");
+            setTimeout(()=>history("/"), 500);
             
         }
         
