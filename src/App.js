@@ -7,6 +7,7 @@ import AddEdit from './pages/AddEdit';
 import View from './pages/View';
 import About from './pages/About';
 import Header from './components/Header';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path='/update/:id' element={<AddEdit/>} />
           <Route exact path='/view/:id' element={<View/>} />
           <Route exact path='/about' element={<About/>} />
+          <Route exact path='/login' element={<Login/>} />
         </Routes>
         
       </div>

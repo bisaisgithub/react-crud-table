@@ -13,7 +13,7 @@ const Home = () => {
     }, []);
 
     const getUsers = async ()=>{
-        const response = await axios.get('http://localhost:3001/users');
+        const response = await axios.get('http://172.16.0.104:3001/users');
         if (response.status === 200) {
             setData(response.data);
         }
