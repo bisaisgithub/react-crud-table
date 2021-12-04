@@ -11,7 +11,7 @@ function Login() {
         if (!email && !password) {
             toast.error('Empty Fields login')
         }else{
-            const loginResponse = await axios.post('http://172.16.0.104:3001/login', {email, password}, {withCredentials: true});
+            const loginResponse = await axios.post('http://172.16.0.100:3001/login', {email, password}, {withCredentials: true});
             if (loginResponse.status === 200) {
                 toast.success('Login Successfuly')
                 console.log(loginResponse.data);
