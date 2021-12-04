@@ -29,7 +29,7 @@ const AddEdit = () => {
     }, [id]);
 
     const getSingleUser = async (id)=>{
-        const response = await axios.get(`http://localhost:3001/user/${id}`);
+        const response = await axios.get(`http://172.16.0.103:3001/user/${id}`);
             if (response.status === 200) {
                 setName(response.data[0].name);
                 setEmail(response.data[0].email);
