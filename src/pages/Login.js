@@ -1,10 +1,19 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword]=useState('');
+    // const [user, setUser]=useState({});
+
+    useEffect( ()=>{
+        const fetchAccessToken = async ()=>{
+            const userResponse = await axios.post('http://172.16.0.103:3001/refresh_token');
+            console.log('userResponse: ', userResponse);
+        }
+        fetchAccessToken();
+    }, []);
 
     const loginSubmit = async ()=>{
         console.log('login Sumbit run')
