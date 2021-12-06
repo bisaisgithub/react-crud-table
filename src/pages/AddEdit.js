@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router';
-import {useNavigate, useLocation} from 'react-router-dom';
+import {useNavigate, useLocation, Navigate} from 'react-router-dom';
 import axios from 'axios';
 import './AddEdit.css';
 import { toast } from 'react-toastify';
@@ -17,6 +17,7 @@ const AddEdit = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [contact, setContact] = useState("");
+    const [redirect, setRedirect] = useState(false);
 
     const history = useNavigate();
 
@@ -29,7 +30,7 @@ const AddEdit = () => {
     }, [id]);
 
     const getSingleUser = async (id)=>{
-        const response = await axios.get(`http://172.16.0.103:3001/user/${id}`);
+        const response = await axios.get(`http://172.16.0.101:3001/user/${id}`);
             if (response.status === 200) {
                 setName(response.data[0].name);
                 setEmail(response.data[0].email);
@@ -39,15 +40,16 @@ const AddEdit = () => {
 
     const addUser = async (data)=>{
         // console.log('addContact ',data);
-        const response = await axios.post("http://localhost:3001/user", data);
+        const response = await axios.post("http://172.16.0.101:3001/user", data);
         if (response.status === 200) {
             toast.success(response.data);
+            setRedirect(true);
         }
     };
 
     const updateUser = async (data, id)=>{
         // console.log('addContact ',data);
-        const response = await axios.put(`http://localhost:3001/user/${id}`, data);
+        const response = await axios.put(`http://172.16.0.101:3001/user/${id}`, data);
         if (response.status === 200) {
             toast.success(response.data);
         }
@@ -74,7 +76,7 @@ const AddEdit = () => {
             }
             
             // history("/");
-            setTimeout(()=>history("/"), 500);
+            // setTimeout(()=>history("/"), 500);
             
         }
         
@@ -85,6 +87,10 @@ const AddEdit = () => {
     //     setState({...state, [name] : value});
     //     console.log(state);
     // }
+    if (redirect) {
+        return <Navigate to="/login"/>
+    }
+    
     return (
         <div style={{marginTop: "100px"}}>
             <form style={{margin: "auto", padding: "15px", maxWidth: "400px", alignContent: "center"}}>

@@ -13,7 +13,7 @@ const Home = () => {
     }, []);
 
     const getUsers = async ()=>{
-        const response = await axios.get('http://172.16.0.103:3001/users');
+        const response = await axios.get('http://172.16.0.101:3001/users');
         console.log('response', response)
         if (response.status === 200) {
             setData(response.data);
@@ -23,7 +23,7 @@ const Home = () => {
     const onDeleteUser = async (id)=>{
         console.log(id);
         if (window.confirm(`sure to delete ${id} ?`)) {
-            const response = await axios.delete(`http://172.16.0.103:3001/user/${id}`);
+            const response = await axios.delete(`http://172.16.0.101:3001/user/${id}`);
             if (response.status === 200) {
                 toast.success(response.data);
                 getUsers();

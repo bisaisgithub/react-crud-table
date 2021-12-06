@@ -9,7 +9,7 @@ function Login() {
 
     useEffect( ()=>{
         const fetchAccessToken = async ()=>{
-            const userResponse = await axios.post('http://172.16.0.103:3001/refresh_token');
+            const userResponse = await axios.get('http://172.16.0.101:3001/refresh_token', {withCredentials: true});
             console.log('userResponse: ', userResponse);
         }
         fetchAccessToken();
@@ -20,13 +20,14 @@ function Login() {
         if (!email && !password) {
             toast.error('Empty Fields login')
         }else{
-            const loginResponse = await axios.post('http://172.16.0.103:3001/login', {email, password}, {withCredentials: true});
+            const loginResponse = await axios.post('http://172.16.0.101:3001/login', {email, password}, {withCredentials: true});
             if (loginResponse.status === 200) {
                 toast.success('Login Successfuly')
                 console.log(loginResponse.data);
             }    
         }
     }
+
     return (
         <div>
             <h2>Login Page</h2>
